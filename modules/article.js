@@ -3,7 +3,7 @@ const Sequelize = require('../config/db')
 const articleSchema = Sequelize.import('../schemas/article')
 // 自动创建表
 articleSchema.sync({
-    force: true
+    force: false
 })
 
 /* 
@@ -28,6 +28,15 @@ class articleModule {
                 art_id: id
             }
         });
+    }
+
+    // 根据 id 删除文章
+    static async deleteArticle(id) {
+        return await articleSchema.destroy({
+            where: {
+                art_id: id
+            }
+        })
     }
 }
 

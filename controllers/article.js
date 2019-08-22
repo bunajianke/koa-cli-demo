@@ -41,23 +41,49 @@ class articleController {
 
     static async datail(ctx) {
         let id = ctx.params.id
-        if(id) {
-            try {
-                let data = await articleModule.getArticle(id)
-                ctx.response.status = 200
-                ctx.body = {
-                    code: '0',
-                    msg: '获取详情成功',
-                    data
-                }
-            } catch (error) {
-                ctx.response.status = 412
-                ctx.body = {
-                    code: '-1',
-                    msg: '查询失败',
-                    error
-                }
-            }
+        if(!id) return
+        
+        try {
+            let data = await articleModule.getArticle(id);
+            ctx.response.status = 200;
+            ctx.body = {
+                code: "0",
+                msg: "获取详情成功",
+                data
+            };
+        } catch (error) {
+            ctx.response.status = 412;
+            ctx.body = {
+                code: "-1",
+                msg: "查询失败",
+                error
+            };
+        }
+    }
+
+    /* 
+        删除文章
+    */
+    
+    static async delete(ctx) {
+        let req = ctx.request.body
+        if(!req.art_id) return
+
+        try {
+            let data = await articleModule.deleteArticle(req.art_id);
+            ctx.response.status = 200;
+            ctx.body = {
+                code: "0",
+                msg: "删除成功",
+                data
+            };
+        } catch (error) {
+            ctx.response.status = 412;
+            ctx.body = {
+                code: "-1",
+                msg: "删除失败",
+                error
+            };
         }
     }
 }

@@ -1,22 +1,9 @@
 const router = require('koa-router')()
+const userController = require('../controllers/user')
 
-router.prefix('/users')
-
-router.get('/', function (ctx, next) {
-  ctx.body = 'this is a users response!'
-})
-
-router.get('/bar', function (ctx, next) {
-  ctx.body = 'this is a users/bar response'
-})
-
-router.post('/login', ctx => {
-  console.log(ctx.request.body);
-})
-
-router.post('/test', ctx => {
-  console.log(ctx.request.body)
-  ctx.body = JSON.stringify(ctx.request.body)
-})
+router
+    .prefix("/users")
+    // .get('/userinfo/:id')
+    .post("/regist", userController.regist)
 
 module.exports = router
