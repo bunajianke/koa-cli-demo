@@ -1,38 +1,38 @@
-module.exports = (sequelize, dataTypes) => {
+module.exports = (sequelize, DataTypes) => {
     return sequelize.define(
         "article",
         {
             art_id: {
-                type: dataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 primaryKey: true,
                 allowNull: false,
                 autoIncrement: true
             },
             art_title: {
-                type: dataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 field: "title"
             },
             author: {
-                type: dataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 field: "author"
             },
             content: {
-                type: dataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 field: "content"
             },
             category: {
-                type: dataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 field: "category"
             },
             createdAt: {
-                type: dataTypes.DATE
+                type: DataTypes.DATE
             },
             updatedAt: {
-                type: dataTypes.DATE
+                type: DataTypes.DATE
             }
         },
         {
