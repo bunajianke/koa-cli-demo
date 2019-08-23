@@ -2,6 +2,18 @@ const articleModule = require('../modules/article')
 
 class articleController {
     /* 
+        获取文章列表
+    */
+    
+    static async list(ctx) {
+        let page = ctx.params.page
+        let artList = await articleModule.fetchArtList(page);
+        ctx.body = {
+            artList
+        };
+    }
+
+    /* 
         创建文章
      */
 

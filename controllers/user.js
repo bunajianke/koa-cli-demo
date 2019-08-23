@@ -24,7 +24,24 @@ class userController {
         用户登录
      */
     static async login(ctx) {
+        let req = ctx.request.body
+        if(!req.username || !req.password) {
+            errorMsg(ctx, 412, "-1", "请输入用户名或密码", null)
+            return
+        }
 
+        try {
+            let authLog = await userModule.userLogin(req);
+            
+            if(!authLog) {
+                errorMsg(ctx, 412, "-1", "用户不存在或密码错误，请确认后重试", null);
+                return
+            }
+            errorMsg(ctx, 200, "0", "登录成功", authLog)
+            
+        } catch (error) {
+            errorMsg(ctx, 412, '-1', "登录失败", error)
+        }
     }
 
     /* 

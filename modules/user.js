@@ -18,7 +18,12 @@ class userModule {
 
     // 登录
     static async userLogin(req) {
-
+        return await userSchema.findOne({
+            where: {
+                name: req.username,
+                password: req.password
+            }
+        })
     }
 }
 

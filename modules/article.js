@@ -11,6 +11,15 @@ articleSchema.sync({
  */
 
 class articleModule {
+    // 获取全部文章
+    static async fetchArtList(currentPage = 1) {
+        let pageSize = 10
+        return await articleSchema.findAndCountAll({
+            limit: pageSize,
+            offset: (currentPage - 1) * pageSize
+        });
+    }
+
     // 新增文章
     static async createArticle(data) {
         return await articleSchema.create({
@@ -18,7 +27,7 @@ class articleModule {
             author: data.author,
             content: data.content,
             category: data.category
-        })
+        });
     }
 
     // 根据文章 id 查询文章
@@ -36,7 +45,7 @@ class articleModule {
             where: {
                 art_id: id
             }
-        })
+        });
     }
 }
 
