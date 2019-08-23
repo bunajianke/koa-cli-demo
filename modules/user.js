@@ -6,6 +6,7 @@ userSchema.sync({
 })
 
 class userModule {
+    // 创建
     static async createUser(req) {
         return await userSchema.create({
             username: req.username,
@@ -13,6 +14,11 @@ class userModule {
             password: req.password,
             email: req.email
         })
+    }
+
+    // 登录
+    static async userLogin(req) {
+
     }
 }
 
