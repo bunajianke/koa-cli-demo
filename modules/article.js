@@ -3,6 +3,7 @@ const Sequelize = require('../config/db')
 const articleSchema = Sequelize.import('../schemas/article')
 // 自动创建表
 articleSchema.sync({
+    // true 如果表存在，将会丢弃表
     force: false
 })
 
